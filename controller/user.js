@@ -1,6 +1,6 @@
-import User from "../models/User.js";
+const { User } = require("../models/User.js");
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   try {
     const { username, firstName, lastName, email } = req.body;
     // console.log(req.body, req.file);
@@ -25,7 +25,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { username } = req.body;
     console.log(req.body);
@@ -42,7 +42,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     const { userId } = req.body;
     const users = await User.find({ _id: { $ne: userId } });
@@ -53,3 +53,5 @@ export const getUsers = async (req, res) => {
     });
   }
 };
+
+module.exports = { register, login, getUsers };
